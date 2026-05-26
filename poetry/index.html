@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>暮春的断头台</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400&family=Noto+Serif:ital,wght@0,300;0,400;1,300&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #F5F0E8;
+      color: #2C2420;
+      font-family: 'Noto Serif SC', 'Noto Serif', Georgia, serif;
+      font-weight: 300;
+    }
+
+    /* 入口页 */
+    #cover {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 2.5s ease-in;
+    }
+
+    #cover h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: #2C2420;
+    }
+
+    #cover .line {
+      margin-top: 1.5rem;
+      width: 3rem;
+      height: 1px;
+      background-color: #C96A2E;
+    }
+
+    #cover .scroll-hint {
+      margin-top: 4rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #9A8878;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* 诗集主体 */
+    #poems {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 8rem 2rem 12rem;
+    }
+
+    .poem-entry {
+      margin-bottom: 8rem;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .poem-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: #C96A2E;
+      margin-bottom: 1.8rem;
+    }
+
+    .poem-text {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      line-height: 2.2;
+      color: #2C2420;
+      white-space: pre-line;
+    }
+
+    .poem-text.fragment {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      line-height: 2.5;
+    }
+
+    /* 分隔线 */
+    .divider {
+      width: 1px;
+      height: 3rem;
+      background-color: #D4C9BC;
+      margin: 0 auto 8rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem 8rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #9A8878;
+    }
+
+    ::selection {
+      background-color: #C96A2E22;
+    }
+  </style>
+</head>
+<body>
+
+  <section id="cover">
+    <h1>暮春的断头台</h1>
+    <div class="line"></div>
+    <p class="scroll-hint">↓</p>
+  </section>
+
+  <section id="poems">
+
+    <div class="poem-entry">
+      <div class="poem-date">2026 · 五月六日</div>
+      <div class="poem-text fragment">你的一千个琥珀瞳孔中
+倒映的是
+断臂的风车挑起沙子</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2026 · 一月二十一日</div>
+      <div class="poem-text">身体适应一个地方很快
+但是灵魂
+很慢
+
+公路盘旋像眼王幼蛇一样吞食我</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2025 · 十二月九日</div>
+      <div class="poem-text fragment">异化
+隔绝
+臣服与命令
+埋头苦干
+兽面
+工具
+沉默</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2025 · 八月二十一日</div>
+      <div class="poem-text">会因为和人的距离突然落泪
+也会用果核的皮把自己包裹得死死的</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2025 · 九月八日</div>
+      <div class="poem-text fragment">一切都会来</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2025 · 七月二十七日</div>
+      <div class="poem-text fragment">雨伞会哭泣</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2025 · 七月十四日</div>
+      <div class="poem-text">我想要的就会得到
+如果没有来
+那就是更好的在等着我</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2025 · 五月三十一日</div>
+      <div class="poem-text">神圣彩色玻璃透过的光托着灰尘
+飘落在地板
+悄无声息
+
+夜晚寂静像掷一颗鹅卵石入湖水
+沉降到湖底
+悄无声息
+
+「Johnny, remember me」
+
+梦陀罗
+生生落</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2025 · 三月二十三日</div>
+      <div class="poem-text">一枚铜绿钱币
+由海草拨动着
+阳光劈开涟漪吻在金属泛光上
+
+波
+汩汩地从钱币上坐起
+又躺下
+消失</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2025 · 二月九日</div>
+      <div class="poem-text">去程越快
+回程就愈慢
+我的心蝴蝶般轻轻飞了出去
+
+又如井水汩汩
+波光荡漾间是心脏的碎隙</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2024 · 四月八日</div>
+      <div class="poem-text fragment">山崖的眼睛</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poem-entry">
+      <div class="poem-date">2023 · 十一月十六日</div>
+      <div class="poem-text">我的生命力旺盛
+我是一条鲜活的生命
+我为我的心脏炽热感到欣喜</div>
+    </div>
+
+  </section>
+
+  <footer>暮春的断头台</footer>
+
+</body>
+</html>
