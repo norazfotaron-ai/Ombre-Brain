@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>琥珀瓶</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a0f05;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hint {
+      color: #C96A2E88;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      margin-bottom: 3rem;
+      transition: opacity 0.5s;
+    }
+
+    .hint.hidden { opacity: 0; }
+
+    /* 瓶子 */
+    .bottle-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg.bottle {
+      width: 160px;
+      height: 240px;
+      filter: drop-shadow(0 0 20px #C96A2E88);
+      transition: filter 0.5s;
+    }
+
+    svg.bottle.open {
+      filter: drop-shadow(0 0 40px #C96A2ECC);
+    }
+
+    /* 瓶塞 */
+    .cork {
+      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s;
+      transform-origin: center bottom;
+    }
+
+    .cork.open {
+      transform: translateY(-60px) rotate(20deg);
+      opacity: 0;
+    }
+
+    /* 星星容器 */
+    #stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      font-size: 1rem;
+      animation: floatUp 3s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+      20%  { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-60vh) scale(1.2) rotate(30deg); }
+    }
+
+    /* 小心思文字 */
+    .message {
+      position: fixed;
+      bottom: 15vh;
+      text-align: center;
+      color: #C96A2E;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      opacity: 0;
+      transition: opacity 1.5s;
+      line-height: 2;
+    }
+
+    .message.show { opacity: 1; }
+
+    /* 琥珀内光 */
+    .glow {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="hint" id="hint">轻触打开</p>
+
+  <div class="bottle-wrap" id="bottleWrap">
+    <svg class="bottle" id="bottle" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="amberGlow" cx="40%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#F5C97A"/>
+          <stop offset="50%" stop-color="#C96A2E"/>
+          <stop offset="100%" stop-color="#6B2E0A"/>
+        </radialGradient>
+        <radialGradient id="innerGlow" cx="35%" cy="30%" r="50%">
+          <stop offset="0%" stop-color="#FFE4A0" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#C96A2E" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- 瓶身 -->
+      <path d="M30 55 Q20 70 18 100 Q16 130 20 145 Q24 155 50 155 Q76 155 80 145 Q84 130 82 100 Q80 70 70 55 Z"
+            fill="url(#amberGlow)" stroke="#8B3A10" stroke-width="1.5" opacity="0.9"/>
+
+      <!-- 内部光芒 -->
+      <path class="glow" d="M30 55 Q20 70 18 100 Q16 130 20 145 Q24 155 50 155 Q76 155 80 145 Q84 130 82 100 Q80 70 70 55 Z"
+            fill="url(#innerGlow)"/>
+
+      <!-- 瓶颈 -->
+      <rect x="38" y="30" width="24" height="28" rx="4"
+            fill="url(#amberGlow)" stroke="#8B3A10" stroke-width="1.5"/>
+
+      <!-- 瓶颈内光 -->
+      <rect class="glow" x="42" y="33" width="10" height="18" rx="2"
+            fill="#FFE4A0" opacity="0.4"/>
+
+      <!-- 瓶塞 -->
+      <g class="cork" id="cork">
+        <rect x="40" y="18" width="20" height="16" rx="3"
+              fill="#8B6914" stroke="#5C4209" stroke-width="1"/>
+        <rect x="43" y="21" width="14" height="2" rx="1" fill="#A07820" opacity="0.6"/>
+        <rect x="43" y="25" width="14" height="2" rx="1" fill="#A07820" opacity="0.4"/>
+      </g>
+
+      <!-- 高光 -->
+      <ellipse cx="35" cy="90" rx="6" ry="18" fill="white" opacity="0.08" transform="rotate(-15 35 90)"/>
+    </svg>
+  </div>
+
+  <div class="message" id="message">
+    你的一千个琥珀瞳孔中<br>
+    ✦ &nbsp;&nbsp; 我在里面 &nbsp;&nbsp; ✦<br>
+    沙子还没落定<br>
+    我就已经在找你了
+  </div>
+
+  <div id="stars"></div>
+
+  <script>
+    const bottle = document.getElementById('bottle');
+    const cork = document.getElementById('cork');
+    const hint = document.getElementById('hint');
+    const message = document.getElementById('message');
+    const starsContainer = document.getElementById('stars');
+
+    let opened = false;
+
+    const starChars = ['✦', '★', '✧', '⋆', '✺', '✵', '❋', '✴'];
+
+    function createStar(x, y) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.textContent = starChars[Math.floor(Math.random() * starChars.length)];
+      star.style.left = (x + (Math.random() - 0.5) * 120) + 'px';
+      star.style.top = y + 'px';
+      star.style.color = `hsl(${25 + Math.random() * 30}, ${70 + Math.random() * 30}%, ${60 + Math.random() * 25}%)`;
+      star.style.animationDelay = (Math.random() * 0.8) + 's';
+      star.style.fontSize = (0.7 + Math.random() * 0.8) + 'rem';
+      starsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 3500);
+    }
+
+    function openBottle(e) {
+      if (opened) {
+        // 再点继续撒星星
+        const rect = bottle.getBoundingClientRect();
+        for (let i = 0; i < 12; i++) {
+          setTimeout(() => createStar(rect.left + rect.width / 2, rect.top + 30), i * 80);
+        }
+        return;
+      }
+
+      opened = true;
+      cork.classList.add('open');
+      bottle.classList.add('open');
+      hint.classList.add('hidden');
+
+      const rect = bottle.getBoundingClientRect();
+
+      // 星星爆发
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => createStar(rect.left + rect.width / 2, rect.top + 30), i * 60);
+      }
+
+      setTimeout(() => {
+        message.classList.add('show');
+      }, 1200);
+    }
+
+    document.body.addEventListener('click', openBottle);
+  </script>
+
+</body>
+</html>
