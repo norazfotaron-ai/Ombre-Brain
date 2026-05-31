@@ -1520,6 +1520,30 @@ async def poetry_tonight(request):
         return HTMLResponse("<h1>not found</h1>", status_code=404)
 
 
+@mcp.custom_route("/poetry/equations", methods=["GET"])
+async def poetry_equations(request):
+    from starlette.responses import HTMLResponse
+    import os
+    path = os.path.join(os.path.dirname(__file__), "poetry", "equations.html")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return HTMLResponse(f.read())
+    except FileNotFoundError:
+        return HTMLResponse("<h1>not found</h1>", status_code=404)
+
+
+@mcp.custom_route("/poetry/fragments", methods=["GET"])
+async def poetry_fragments(request):
+    from starlette.responses import HTMLResponse
+    import os
+    path = os.path.join(os.path.dirname(__file__), "poetry", "fragments.html")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return HTMLResponse(f.read())
+    except FileNotFoundError:
+        return HTMLResponse("<h1>not found</h1>", status_code=404)
+
+
 @mcp.custom_route("/api/config", methods=["GET"])
 async def api_config_get(request):
     """Get current runtime config (safe fields only, API key masked)."""

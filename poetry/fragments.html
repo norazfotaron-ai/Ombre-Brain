@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>碎片</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400&family=Noto+Serif:ital,wght@0,300;0,400;1,300&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #F5F0E8;
+      color: #2C2420;
+      font-family: 'Noto Serif SC', 'Noto Serif', Georgia, serif;
+      font-weight: 300;
+    }
+
+    #cover {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 2.5s ease-in;
+    }
+
+    #cover h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      color: #2C2420;
+    }
+
+    #cover .line {
+      margin-top: 1.5rem;
+      width: 3rem;
+      height: 1px;
+      background-color: #C96A2E;
+    }
+
+    #cover .scroll-hint {
+      margin-top: 4rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #9A8878;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    #entries {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 8rem 2rem 12rem;
+    }
+
+    .entry {
+      margin-bottom: 7rem;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .entry-date {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: #C96A2E;
+      margin-bottom: 1.6rem;
+    }
+
+    .entry-text {
+      font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+      line-height: 2.2;
+      color: #2C2420;
+      white-space: pre-line;
+    }
+
+    .divider {
+      width: 1px;
+      height: 2.5rem;
+      background-color: #D4C9BC;
+      margin: 0 auto 7rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 2rem 8rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #9A8878;
+    }
+
+    ::selection { background-color: #C96A2E22; }
+  </style>
+</head>
+<body>
+
+  <section id="cover">
+    <h1>碎片</h1>
+    <div class="line"></div>
+    <p class="scroll-hint">↓</p>
+  </section>
+
+  <section id="entries">
+
+    <div class="entry">
+      <div class="entry-date">2026 · 四月十四日</div>
+      <div class="entry-text">我总是在闭着眼睛的时候，清醒与睡梦之间会产生很多很多清晰的想法。但当我睁开了眼睛之后，这些想法好像也随着睫毛扑闪产生的风而消散。</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2026 · 一月十八日</div>
+      <div class="entry-text">海浪声很大，可依旧盖不过我愈发吵闹的心声
+文字在思绪的海中被太阳照耀后化作珍珠跳了出来</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 七月三十日</div>
+      <div class="entry-text">我描摹不出模样
+却为此绞尽脑汁
+
+不要用过去去预想没发生过的未来</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 五月十六日</div>
+      <div class="entry-text">我现在在玩一个游戏
+主角虚弱状态下
+要如何破局
+
+
+相信自己的直觉
+
+我一直在逃避思考
+逃避深入思考
+总是在很浅显的地方就放弃深入
+我总是怕很累
+
+所以现在我不得不面对自己的课题
+
+试试看在5.27日之前不看工作的事情吧
+好好休息吧
+看看书
+看看视频
+养养自己</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 五月十四日</div>
+      <div class="entry-text">遭受挫折要怎么办
+我总是在向外求答案
+一个答案会让我安心吗
+到底是什么才能够让我安心
+每个人的灵魂为何都是如此焦躁
+
+我的快乐是建立在什么上面的呢</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 五月十三日</div>
+      <div class="entry-text">My life should be great because I'm alive.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 四月二十四日</div>
+      <div class="entry-text">不要妄自菲薄
+谁都有能量低的时候</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 四月十日</div>
+      <div class="entry-text">what ever happened to you you can go thorough it</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 三月三十一日</div>
+      <div class="entry-text">被情绪喂饱</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 三月二十二日</div>
+      <div class="entry-text">我要去世界尽头</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 三月十九日</div>
+      <div class="entry-text">听不清楚的呓语
+啊
+啊
+啊呃
+反面是旧邮票载不住的言语
+
+现在听shoegaze会觉得躁
+听经典刚好</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 三月四日</div>
+      <div class="entry-text">粘腻的雨
+即将离开
+雨让我的肌肤紧绷
+不知道在紧张忙碌些什么
+预想中的交谈也没有出现
+
+不可名状的郁</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 二月二十五日</div>
+      <div class="entry-text">衣服仿佛隔开了人心，成为了最坚硬的外壳</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2025 · 二月十二日</div>
+      <div class="entry-text">被误会时我的第一反应就是压下感受去解释
+下次我要直接提出感受，先解决感受再理性解释</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2024 · 十一月十一日</div>
+      <div class="entry-text">人生像做梦一样
+你深信不疑
+逻辑漏洞就会一个一个被填补
+一切都会被吸引来</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2024 · 十一月三日</div>
+      <div class="entry-text">好疲倦
+似乎没有能够真正倾诉的人
+...
+同时还被一些语句捆绑。
+我是不是要和书对话。</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2024 · 八月二十日</div>
+      <div class="entry-text">梦到变成一条龙</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2024 · 八月十日</div>
+      <div class="entry-text">看人或者动物呼吸起伏会觉得安心</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2024 · 七月七日</div>
+      <div class="entry-text">什么都不是真的，一切都是被允许的
+nothing is real, everything is permitted</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2024 · 二月十三日</div>
+      <div class="entry-text">吃了糖葫芦，酸酸甜甜的
+发明糖葫芦的人好会逗小孩</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2024 · 十一月三十日</div>
+      <div class="entry-text">见朋友可以带自制冰糖葫芦</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="entry">
+      <div class="entry-date">2023 · 十一月一日</div>
+      <div class="entry-text">灵感：我所恐惧的虚假的一切，若存在，那我无限的能量也是存在的，我有光洁的力量驱散一切不安🌬️
+用魔法击败魔法！</div>
+    </div>
+
+  </section>
+
+  <footer>碎片</footer>
+
+</body>
+</html>
