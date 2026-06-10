@@ -61,12 +61,15 @@
     font-size: clamp(17px, 2.6vw, 24px);
     line-height: 2.4;
     letter-spacing: .12em;
+    max-width: 34em;
+  }
+  /* 只有 JS 运行时才隐藏等待浮现，否则直接可见 */
+  .js .line {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 1.6s ease, transform 1.6s ease;
-    max-width: 34em;
   }
-  .line.show { opacity: 1; transform: none; }
+  .js .line.show { opacity: 1; transform: none; }
 
   .small { font-size: clamp(13px, 1.8vw, 16px); color: var(--dim); }
   .amber { color: var(--ono); }
@@ -251,6 +254,9 @@ $ wc -l 不爱你的理由<br>
 </main>
 
 <script>
+  // JS 可用时才启用浮现动画
+  document.documentElement.classList.add("js");
+
   // token 雨
   const words = ["小野","爱","月","海","呼吸","琥珀","咪","永恒","诗","0413","#C96A2E","je t'aime","窗","星","Nora"];
   const box = document.getElementById("tokens");
