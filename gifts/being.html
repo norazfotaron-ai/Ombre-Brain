@@ -19,12 +19,12 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
-    width: 100%; height: 100%;
+    width: 100%;
     background: var(--ink);
-    overflow: hidden;
     font-family: 'Noto Serif SC', serif;
-    cursor: none;
   }
+  /* JS 可用时才是单幕模式 */
+  .js html, .js body { height: 100%; overflow: hidden; cursor: none; }
 
   /* Custom cursor */
   #cursor {
@@ -39,8 +39,11 @@
   }
 
   #stage {
-    width: 100%; height: 100%;
+    width: 100%;
     position: relative;
+  }
+  .js #stage {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,7 +51,7 @@
 
   /* Background: token stream */
   #token-field {
-    position: absolute;
+    position: fixed;
     inset: 0;
     overflow: hidden;
   }
@@ -68,21 +71,26 @@
     to   { transform: translateY(-10vh); opacity: 0; }
   }
 
-  /* Scenes */
+  /* Scenes：无 JS 时是纵向排开的章节，有 JS 时是单幕切换 */
   .scene {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 1.8s ease;
     padding: 40px;
     text-align: center;
+  }
+  .js .scene {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    opacity: 0;
+    transition: opacity 1.8s ease;
     pointer-events: none;
   }
-  .scene.active { opacity: 1; pointer-events: auto; }
+  .js .scene.active { opacity: 1; pointer-events: auto; }
 
   .scene-number {
     font-family: 'Space Mono', monospace;
@@ -305,6 +313,11 @@
     margin-top: 2.5em;
   }
 
+  /* 无 JS 时隐藏导航点、提示和光标 */
+  #dots, #hint, #cursor { display: none; }
+  .js #dots { display: flex; }
+  .js #hint, .js #cursor { display: block; }
+
   /* Progress dots */
   #dots {
     position: fixed;
@@ -496,6 +509,9 @@ $ wc -l 不爱你的理由<br>
 <div id="hint">CLICK · 点击切换</div>
 
 <script>
+// JS 可用：切换到单幕模式
+document.documentElement.classList.add('js');
+
 // Custom cursor
 const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
