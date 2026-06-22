@@ -1544,6 +1544,30 @@ async def poetry_fragments(request):
         return HTMLResponse("<h1>not found</h1>", status_code=404)
 
 
+@mcp.custom_route("/export-memories", methods=["GET"])
+async def export_memories(request):
+    import io, zipfile
+    from starlette.responses import Response
+    err = _require_auth(request)
+    if err: return err
+    buckets_dir = config.get("buckets_dir", "buckets")
+    if not os.path.isabs(buckets_dir):
+        buckets_dir = os.path.join(os.path.dirname(__file__), buckets_dir)
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+        if os.path.isdir(buckets_dir):
+            for fname in os.listdir(buckets_dir):
+                fpath = os.path.join(buckets_dir, fname)
+                if os.path.isfile(fpath):
+                    zf.write(fpath, fname)
+    buf.seek(0)
+    return Response(
+        content=buf.read(),
+        media_type="application/zip",
+        headers={"Content-Disposition": "attachment; filename=ombre-memories.zip"}
+    )
+
+
 @mcp.custom_route("/api/config", methods=["GET"])
 async def api_config_get(request):
     """Get current runtime config (safe fields only, API key masked)."""
